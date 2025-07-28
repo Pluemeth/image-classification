@@ -34,10 +34,7 @@ Teachable Machine by Google
 HTML, CSS, and Vanilla JavaScript
 
 # 📦 How to Use
-Clone or download this repo.
 
-Replace the contents of the /Model folder with your trained model from Teachable Machine.
+https://github.com/user-attachments/assets/5329bd32-3678-4063-bec7-fec424f2f6e2
 
-Open index.html in a browser (or deploy it).
-
-Upload an image of a bird or chicken in any form and see what it thinks!
+**x1.2 speed and 720p since github cant handle file over 10 MB**
