@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>classification</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    /* Reset some default styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #f0f4f8 0%, #c9e7fa 100%);
+    color: #222;
+    min-height: 100vh;
+    padding: 0 0 40px 0;
+}
+
+/* Header styling */
+header {
+    background: #2196f3;
+    color: #fff;
+    padding: 32px 0 24px 0;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(33,150,243,0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Navigation bar */
+nav {
+    background: #1976d2;
+    padding: 12px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 18px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: #ffd600;
+}
+
+/* Main content */
+
+/* Center main title and file input */
+.main-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 24px;
+    color: #1976d2;
+    letter-spacing: 1px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+/* Custom file upload button */
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 28px;
+    cursor: pointer;
+    background: #1976d2;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+    border: none;
+    outline: none;
+    position: relative;
+}
+.custom-file-upload:hover {
+    background: #1565c0;
+}
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+/* Spinner styles */
+.spinner {
+    margin: 0 auto 24px auto;
+    border: 6px solid #e3f2fd;
+    border-top: 6px solid #1976d2;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+    .main-title {
+        font-size: 1.3rem;
+    }
+    .custom-file-upload {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+}
+
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(33,150,243,0.08);
+    padding: 36px 28px;
+}
+
+h2 {
+    color: #1976d2;
+    margin-bottom: 18px;
+}
+
+p {
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+/* Center the result box and style it */
+.result-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(33,150,243,0.10);
+    padding: 32px 24px;
+    margin: 40px auto 0 auto;
+    max-width: 350px;
+    min-width: 260px;
+}
+
+/* Center the image */
+.result-box img {
+    display: block;
+    margin: 0 auto 24px auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(33,150,243,0.08);
+    background: #f0f4f8;
+}
+
+/* Add spacing for progress bars inside the box */
+#label-container {
+    width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Make progress bars fill the container minus the 15px padding */
+.prog-bar-container {
+    width: 100%;
+    background: #f44336;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    height: 28px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(33,150,243,0.08);
+    position: relative;
+}
+
+.prog-bar-fill {
+    background: #4caf50; /* green */
+    height: 100%;
+    width: 0;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); /* smoother and slower */
+    border-radius: 8px 0 0 8px;
+}
+
+.prog-bar-label {
+    position: absolute;
+    left: 12px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    z-index: 2;
+    font-size: 1rem;
+}
+
+.drop-zone {
+    border: 2px dashed #1976d2;
+    border-radius: 10px;
+    padding: 32px 0;
+    text-align: center;
+    color: #1976d2;
+    font-size: 1.1rem;
+    margin: 0 auto 24px auto;
+    max-width: 350px;
+    background: #f5fafd;
+    transition: background 0.2s, border-color 0.2s;
+}
+.drop-zone.dragover {
+    background: #e3f2fd;
+    border-color: #1565c0;
+    color: #1565c0;
+}
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 18px 0;
+    background: #e3f2fd;
+    color: #1976d2;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 -2px 8px rgba(33,150,243,0.06);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    main {
+        padding: 18px 8px;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<body>
+
+   <div class="main-title">Teachable Machine Image Model</div>
+
+   <div class="centered">
+   <label class="custom-file-upload">
+      <input type="file" accept="image/*" onchange="loadImage(event)">
+      Choose Image
+   </label>
+</div>
+
+<div id="drop-zone" class="drop-zone">
+   <span>or drag & drop an image here</span>
+</div>
+
+   <div id="loading-spinner" class="spinner" style="display:none;"></div>
+
+   <div class="result-box">
+      <img id="input-image" width="200" style="display:none;" />
+      <div id="label-container"></div>
+   </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+<script type="text/javascript">
+
+   const MODEL_URL = "./Model/";
+
+   let model, maxPredictions;
+   let labelContainer;
+
+   // Show/hide loading spinner
+   function setLoading(isLoading) {
+      document.getElementById('loading-spinner').style.display = isLoading ? 'block' : 'none';
+   }
+
+   const dropZone = document.getElementById('drop-zone');
+dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+});
+dropZone.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+});
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        // Create a fake event to reuse loadImage
+        const fakeEvent = { target: { files: e.dataTransfer.files } };
+        loadImage(fakeEvent);
+    }
+});
+
+   // Load the model
+   async function loadModel() {
+       setLoading(true);
+       const modelURL = MODEL_URL + "model.json";
+       const metadataURL = MODEL_URL + "metadata.json";
+       model = await tmImage.load(modelURL, metadataURL);
+       maxPredictions = model.getTotalClasses();
+       labelContainer = document.getElementById("label-container");
+       labelContainer.innerHTML = '';
+       for (let i = 0; i < maxPredictions; i++) {
+           labelContainer.appendChild(document.createElement("div"));
+       }
+       setLoading(false);
+   }
+
+   loadModel();
+
+   // When the user selects an image
+   async function loadImage(event) {
+       const imageElement = document.getElementById('input-image');
+       imageElement.style.display = 'none';
+       setLoading(true);
+       imageElement.src = URL.createObjectURL(event.target.files[0]);
+       imageElement.onload = async () => {
+           imageElement.style.display = 'block';
+           await predict(imageElement);
+           setLoading(false);
+       };
+   }
+
+   // Predict on the selected image
+   async function predict(imageElement) {
+       const prediction = await model.predict(imageElement);
+       for (let i = 0; i < maxPredictions; i++) {
+           const className = prediction[i].className;
+           const percent = Math.round(prediction[i].probability * 100);
+           labelContainer.childNodes[i].innerHTML = `
+               <div class="prog-bar-container">
+                   <div class="prog-bar-fill" style="width:0"></div>
+                   <span class="prog-bar-label">${className}: ${percent}%</span>
+               </div>
+           `;
+           setTimeout(() => {
+               const fill = labelContainer.childNodes[i].querySelector('.prog-bar-fill');
+               fill.style.width = percent + '%';
+           }, 50);
+       }
+   }
+
+</script>
+</body>
+
+</html>
