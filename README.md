@@ -12,12 +12,12 @@ A fun and smart image classification web app that can detect birds, and more imp
 
 🍗 Accurately identifies:
 
-Even chickens (live, raw, or cooked)
+**Even chickens (live, raw, or cooked)**
 
 <img width="1155" height="889" alt="image" src="https://github.com/user-attachments/assets/6c41243b-3c88-4fb2-bd26-7578a855f33b" />
 
 
-Or birds it also can tell the different
+**Or birds it also can tell the different**
 
 <img width="1066" height="904" alt="image" src="https://github.com/user-attachments/assets/d47fbdf8-a8ac-4bd7-b114-01ed17debb33" />
 
