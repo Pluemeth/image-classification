@@ -41,5 +41,3 @@ Replace the contents of the /Model folder with your trained model from Teachable
 Open index.html in a browser (or deploy it).
 
 Upload an image of a bird or chicken in any form and see what it thinks!
-
-# 📸 Example Predictions
