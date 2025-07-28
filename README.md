@@ -3,8 +3,6 @@ Built with Teachable Machine + TensorFlow.js
 
 A fun and smart image classification web app that can detect birds, and more impressively, distinguish chicken in all forms — live chickens, raw meat, and even cooked chicken (like fried or roasted). Whether it's a bird in the wild or a chicken nugget, this model knows it’s chicken.
 
-<!-- Optional: Add a screenshot if hosted -->
-
 # 🚀 Features
 📷 Upload or drag & drop an image
 
@@ -34,6 +32,9 @@ Teachable Machine by Google
 HTML, CSS, and Vanilla JavaScript
 
 # 📦 How to Use
+
+Download and extract the file then go to this location then open it with VScode or any code editor you perfer that have live server since if you open it normally you cant use don't ask me why but it is what it is.
+then do the just like the video below
 
 https://github.com/user-attachments/assets/5329bd32-3678-4063-bec7-fec424f2f6e2
 
