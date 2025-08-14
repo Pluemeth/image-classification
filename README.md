@@ -31,6 +31,16 @@ Teachable Machine by Google
 
 HTML, CSS, and Vanilla JavaScript
 
+# Train
+
+use default teachable machine setting
+
+epoch: 30
+
+batch size: 16
+
+Learning rate: 0.001
+
 # 📦 How to Use
 
 Download and extract the file then go to this location then open it with VScode or any code editor you perfer that have live server since if you open it normally you cant use don't ask me why but it is what it is.
